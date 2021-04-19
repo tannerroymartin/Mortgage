@@ -87,9 +87,9 @@
 
                     <!--Summary table that displays monthly payment-->
                     <div class="col-6">
-                        <table class="table table-borderless border" id="summaryTable">
+                        <table class="table table-borderless border border-success" id="summaryTable">
                             <tr>
-                                <th colspan="2">Monthly Payments</th>
+                                <th>Monthly Payments</th>
                                 <th id="monthlyPaymentSummary"></th>
                             </tr>
                             <tr>
@@ -117,7 +117,7 @@
                     <div class="col">
                         <table class="table table-striped" id="monthyPaymentsTable">
                             <thead>
-                                <tr>
+                                <tr class="bg-warning">
                                     <th>Month</th>
                                     <th>Payment</th>
                                     <th>Principal</th>
@@ -137,12 +137,12 @@
 
         <template id="dataTemplate">
             <tr>
-                <td id="monthTemplate"></td>
-                <td id="paymentTemplate"></td>
-                <td id="principalTemplate"></td>
-                <td id="interestTemplate"></td>
-                <td id="totalInterestTemplate"></td>
-                <td id="balanceTemplate"></td>
+                <td id="monthTemplate" class="bg-success"></td>
+                <td id="paymentTemplate" class="bg-success"></td>
+                <td id="principalTemplate" class="bg-success"></td>
+                <td id="interestTemplate" class="bg-success"></td>
+                <td id="totalInterestTemplate" class="bg-success"></td>
+                <td id="balanceTemplate" class="bg-success"></td>
             </tr>
         </template>
         <!-- Optional JavaScript -->
