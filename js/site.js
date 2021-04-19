@@ -21,7 +21,7 @@ function calculate() {
 
     let months = term * 12
 
-    //monthly payment
+    //initial declarations
     let interest = 0;
     let totalInterest = 0;
     let remainingBalance = 0;
@@ -29,6 +29,7 @@ function calculate() {
     let principalPayment = 0;
     let monthlyPayment = (principal) * (interestRate / 1200) / (1 - Math.pow((1 + interestRate / 1200), (-months)));
     let interestPayment = 0;
+    
     //interest
 
     let interestTotal = principal * interestRate / 1200;
@@ -48,16 +49,17 @@ function calculate() {
     for (let i = 1; i <= months; i++) {
         interestPayment = (remainingBalance * (interestRate / 1200));
         principalPayment = monthlyPayment - interestPayment;
-        totalInterest = principal * interestRate / 1200;
+        totalInterest = interestPayment + totalInterest;
+
         remainingBalance = remainingBalance - principalPayment;
-        rate++;
-        addToArray(rate, monthlyPayment, principalPayment, interest, totalInterest, remainingBalance)
+
+        addToArray(i, monthlyPayment, principalPayment, interestPayment, totalInterest, remainingBalance)
     }
 
 
     document.getElementById("monthlyPaymentSummary").innerHTML = "$" + (Math.round(monthlyPayment * 100) / 100).toFixed(2);
     document.getElementById("totalPrincipalSummary").innerHTML = "$" + (Math.round(principal * 100) / 100).toFixed(2);
-    document.getElementById("totalInterestSummary").innerHTML = "$" + (Math.round(interestTotal * 100) / 100).toFixed(2);
+    document.getElementById("totalInterestSummary").innerHTML = "$" + (Math.round(totalInterest * 100) / 100).toFixed(2);
     document.getElementById("totalCostSummary").innerHTML = "$" + (Math.round(totalCost * 100) / 100).toFixed(2);
 
     displayData(loanArray);
@@ -78,6 +80,7 @@ function addToArray(month, payment, principalPayment, interest, totalInterest, b
 
 }
 
+//Put data on the page
 function displayData(loanArray) {
 
 
