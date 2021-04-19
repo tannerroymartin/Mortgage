@@ -20,27 +20,21 @@ function calculate() {
     let principalPayment = 0;
     let monthlyPayment = (principal) * (interestRate / 1200) / (1 - Math.pow((1 + interestRate / 1200), (-months)));
     let interestPayment = 0;
-    
+
     //interest
 
     let interestTotal = principal * interestRate / 1200;
     interest = principal * interestRate / 1200;
 
-
     //balance
     let balance = principal;
     remainingBalance = balance - principalPayment;
-
-
-
-    //total cost
-
-    let totalCost = principal + interestTotal;
 
     for (let i = 1; i <= months; i++) {
         interestPayment = (remainingBalance * (interestRate / 1200));
         principalPayment = monthlyPayment - interestPayment;
         totalInterest = interestPayment + totalInterest;
+        totalCost = principal + totalInterest;
 
         remainingBalance = remainingBalance - principalPayment;
 
@@ -48,16 +42,29 @@ function calculate() {
     }
 
 
-    document.getElementById("monthlyPaymentSummary").innerHTML = "$" + (Math.round(monthlyPayment * 100) / 100).toFixed(2);
-    document.getElementById("totalPrincipalSummary").innerHTML = "$" + (Math.round(principal * 100) / 100).toFixed(2);
-    document.getElementById("totalInterestSummary").innerHTML = "$" + (Math.round(totalInterest * 100) / 100).toFixed(2);
-    document.getElementById("totalCostSummary").innerHTML = "$" + (Math.round(totalCost * 100) / 100).toFixed(2);
+    document.getElementById("monthlyPaymentSummary").innerHTML = monthlyPayment.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD'
+    })
+    document.getElementById("totalPrincipalSummary").innerHTML = principal.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD'
+    })
+    document.getElementById("totalInterestSummary").innerHTML = totalInterest.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD'
+    })
+    document.getElementById("totalCostSummary").innerHTML = totalCost.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD'
+    })
+
+
 
     displayData(loanArray);
 
 }
 
-//principal payment and interest payment
 function addToArray(month, payment, principalPayment, interest, totalInterest, balance) {
     let obj = {};
     obj["month"] = month;

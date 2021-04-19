@@ -55,57 +55,57 @@
             <div class="mortgageContainer">
                 <div class="row">
                     <div class="col">
-                        <h1>Mortgage Calculator</h1>
-                    </div>
+                        <br><br><br><br><br><br><br><br>                   </div>
                 </div>
                 <div class="row">
                     <div class="col-6">
 
                         <!--FORM for user input-->
                         <form>
-                            <div class="form-row">
-                                <div class="form-col">
+                            <div class="form-row border border-success p-3 bg-danger">
+                                <div class="form-group">
                                     <label for="loanAmount">Loan Amount</label>
                                     <input type="text" id="loanAmount" value="100000">
                                 </div>
-                                <div class="form-col">
+                                <div class="form-group">
                                     <label for="term">Term(Years)</label>
                                     <input type="text" id="term" value="5">
                                 </div>
-                                <div class="form-col">
+                                <div class="form-group">
                                     <label for="interestRate">Interest Rate</label>
                                     <input type="text" id="interestRate" value="3.5">
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <button type="submit" class="btn btn-success" id="calculateButton"
-                                    onclick="calculate(); return false">Calculate</button>
-                                <!--return false to keep page html from resetting-->
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success" id="calculateButton"
+                                        onclick="calculate(); return false">Calculate</button>
+                                    <!--return false to keep page html from resetting-->
+                                </div>
                             </div>
                         </form>
                     </div>
 
                     <!--Summary table that displays monthly payment-->
                     <div class="col-6">
-                        <table class="table table-borderless border border-success" id="summaryTable">
+                        <table class="table table-borderless border border-success bg-danger" id="summaryTable">
                             <tr>
-                                <th>Monthly Payments</th>
+                                <th class="tableText">Monthly Payments</th>
                                 <th id="monthlyPaymentSummary"></th>
                             </tr>
                             <tr>
-                                <td>
+                                <td class="tableText">
                                     Total Principal
                                 </td>
                                 <td id="totalPrincipalSummary"></td>
                             </tr>
                             <tr>
-                                <td>
+                                <td class="tableText">
                                     Total Interest
                                 </td>
                                 <td id="totalInterestSummary"></td>
                             </tr>
                             <tr>
-                                <td>
+                                <td class="tableText">
                                     Total Cost
                                 </td>
                                 <td id="totalCostSummary"></td>
