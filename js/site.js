@@ -1,6 +1,5 @@
-loanArray = [];
-
 function calculate() {
+
     //User inputs
     let loanAmount = parseFloat(document.getElementById("loanAmount").value);
     let term = parseFloat(document.getElementById("term").value);
@@ -29,7 +28,7 @@ function calculate() {
     //balance
     let balance = principal;
     remainingBalance = balance - principalPayment;
-
+    let loanArray = [];
     for (let i = 1; i <= months; i++) {
         interestPayment = (remainingBalance * (interestRate / 1200));
         principalPayment = monthlyPayment - interestPayment;
@@ -38,7 +37,8 @@ function calculate() {
 
         remainingBalance = remainingBalance - principalPayment;
 
-        addToArray(i, monthlyPayment, principalPayment, interestPayment, totalInterest, remainingBalance)
+        let obj = addToArray(i, monthlyPayment, principalPayment, interestPayment, totalInterest, remainingBalance)
+        loanArray.push(obj);
     }
 
 
@@ -65,6 +65,7 @@ function calculate() {
 
 }
 
+
 function addToArray(month, payment, principalPayment, interest, totalInterest, balance) {
     let obj = {};
     obj["month"] = month;
@@ -74,8 +75,8 @@ function addToArray(month, payment, principalPayment, interest, totalInterest, b
     obj["totalInterest"] = totalInterest;
     obj["balance"] = balance;
 
-    loanArray.push(obj);
 
+    return obj;
 }
 
 //Put data on the page
@@ -91,11 +92,31 @@ function displayData(loanArray) {
         const dataRow = document.importNode(template.content, true);
 
         dataRow.getElementById("monthTemplate").textContent = loanArray[i].month;
-        dataRow.getElementById("paymentTemplate").textContent = (Math.round(loanArray[i].payment * 100) / 100).toFixed(2);
-        dataRow.getElementById("principalTemplate").textContent = (Math.round(loanArray[i].principalPayment * 100) / 100).toFixed(2);
-        dataRow.getElementById("interestTemplate").textContent = (Math.round(loanArray[i].interest * 100) / 100).toFixed(2);
-        dataRow.getElementById("totalInterestTemplate").textContent = (Math.round(loanArray[i].totalInterest * 100) / 100).toFixed(2);
-        dataRow.getElementById("balanceTemplate").textContent = (Math.round(loanArray[i].balance * 100) / 100).toFixed(2);
+        dataRow.getElementById("paymentTemplate").textContent = loanArray[i].payment.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        });
+
+        dataRow.getElementById("principalTemplate").textContent = loanArray[i].principalPayment.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        });
+
+        dataRow.getElementById("interestTemplate").textContent = loanArray[i].interest.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        });
+
+        dataRow.getElementById("totalInterestTemplate").textContent = loanArray[i].totalInterest.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        });
+
+        dataRow.getElementById("balanceTemplate").textContent = loanArray[i].balance.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        });
+
 
 
         monthyPaymentsTableResults.appendChild(dataRow);
